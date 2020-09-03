@@ -1,0 +1,14 @@
+/* Fragment shader for color correction */
+uniform sampler2D image;
+uniform sampler3D clut;
+varying vec2 uv;
+
+void main()
+{
+     vec4 color;
+         /* reading out a pixel */
+     color = texture2D(image, uv);
+         /* corecting the color using CLUT */
+     color = texture3D(clut, color.rgb);
+     gl_FragColor = color;
+}
